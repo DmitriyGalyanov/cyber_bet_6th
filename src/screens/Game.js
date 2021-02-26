@@ -1,8 +1,28 @@
-import React from 'react';
+import React, {useEffect, useReducer, useState} from 'react';
 
-import { View, Text } from 'react-native';
+import { ImageBackground, View, Text, TextInput, TouchableOpacity, BackHandler, } from 'react-native';
+import {
+	TopInterface,
+	ActionButton,
+} from '../components';
 
+import {
+	grayedText,
+	green,
+	initialBalance,
+	initialBet,
+	mainBGColor,
+	mainTextColor,
+	quizQuestions,
+	windowHeight,
+	windowWidth,
+	yellow,
+	nextQuestionTimeout,
+} from '../constants';
+import {background} from '../../assets/images';
+import {getRandomIntInclusive, getRandomSequence} from '../helpers';
 
+import {log} from '../logger';
 export function Game() {
 	
 	return (
