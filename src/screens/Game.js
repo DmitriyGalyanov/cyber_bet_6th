@@ -113,6 +113,24 @@ export function Game() {
 
 		return () => {backHandler.remove()};
 	}, [backHandleFunc]);
+	//kinda routing
+	const callQuiz = () => {
+		log.info('quiz called');
+		setQuestionsIdsSequence(
+			getRandomSequence(quizQuestions.length, 0, quizQuestions.length - 1));
+		dispatch({
+			type: 'setMode',
+			payload: 'quiz',
+		});
+	};
+
+	const callBetQuestion = () => {
+		log.info('bet question called');
+		dispatch({
+			type: 'setMode',
+			payload: 'betQuestion',
+		});
+	};
 	return (
 		<View
 			style={{ //style is present solely for start test purposes
