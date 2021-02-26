@@ -6,8 +6,8 @@ import { windowWidth } from '../constants';
 import { animateValue } from '../helpers';
 
 
-const progressBarColor = '#00CDFE';
-const alertTextColor = '#00C';
+const progressBarColor = '#F53939';
+const alertTextColor = '#E10481';
 const initialProgress = 0;
 const maxProgress = 90;
 const animDuration = 3000;
