@@ -516,6 +516,154 @@ export function Game() {
 			)}
 		</View>
 	);
+
+	//make bet block
+	const [inputValue, setInputValue] = useState(state.betInfo.value.toString());
+	const handleInputChange = (value) => {
+		if (+value > state.balance) {
+			setInputValue(state.balance.toString());
+			return;
+		};
+		if (+value < 1) {
+			setInputValue('1');
+			return;
+		};
+		setInputValue(value);
+	};
+
+	const handleMakeBet = () => {
+		dispatch({
+			type: 'setBetInfo',
+			payload: {
+				value: +inputValue,
+				isMade: true,
+			}
+		});
+		dispatch({
+			type: 'changeBalance',
+			payload: -inputValue,
+		});
+	};
+
+	const renderMakeBetBlock = () => (
+		<View
+			style={{
+				marginTop: windowHeight * .07,
+			}}
+		>
+			<View
+				style={{
+					height: windowHeight * 0.24,
+					width: windowWidth * 0.85,
+					backgroundColor: mainBGColor,
+					borderRadius: 12,
+					elevation: 4,
+					justifyContent: 'space-between',
+					alignItems: 'center',
+					paddingVertical: 16,
+				}}
+			>
+				<Text
+					style={{
+						color: mainTextColor,
+						fontWeight: 'bold',
+						fontSize: 17,
+					}}
+				>
+					Сколько Вы хотите поставить?
+				</Text>
+				<View
+					style={{
+						width: windowWidth * 0.72,
+						justifyContent: 'center',
+						alignItems: 'flex-start',
+					}}
+				>
+					<View
+						style={{
+							flexDirection: 'row',
+							marginBottom: 12,
+						}}
+					>
+						<Text
+							style={{
+								color: mainTextColor,
+								fontWeight: 'bold',
+								fontSize: 15,
+								marginRight: 3,
+								paddingTop: 4,
+							}}
+						>
+							Ваши монеты:
+						</Text>
+						<TextInput
+							style={{
+								color: mainTextColor,
+								fontSize: 15,
+								height: 30,
+								padding: 0,
+								borderBottomColor: yellow,
+								borderBottomWidth: 1,
+								fontWeight: 'bold',
+								flexGrow: 1,
+								marginLeft: 4,
+							}}
+							onChangeText={value => handleInputChange(value)}
+							value={inputValue}
+							keyboardType='numeric'
+						/>
+					</View>
+					<View
+						style={{
+							flexDirection: 'row',
+							
+						}}
+					>
+						<Text
+							style={{
+								color: mainTextColor,
+								fontWeight: 'bold',
+								fontSize: 15,
+								marginRight: 3,
+							}}
+						>
+							Ваш выигрыш:
+						</Text>
+						<Text
+							style={{
+								borderBottomColor: yellow,
+								borderBottomWidth: 1,
+								color: mainTextColor,
+								fontWeight: 'bold',
+								flexGrow: 1,
+							}}
+						>
+							{inputValue * 2}
+						</Text>
+					</View>
+				</View>
+				<TouchableOpacity onPress={handleMakeBet}
+					style={{
+						paddingVertical: 12,
+						paddingHorizontal: 40,
+						backgroundColor: green,
+						elevation: 6,
+						borderRadius: 8,
+					}}
+				>
+					<Text
+						style={{
+							fontWeight: 'bold',
+							fontSize: 18,
+							color: mainTextColor,
+						}}
+					>
+						Поставить
+					</Text>
+				</TouchableOpacity>
+			</View>
+		</View>
+	);
 	return (
 		<View
 			style={{ //style is present solely for start test purposes
