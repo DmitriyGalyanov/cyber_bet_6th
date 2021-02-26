@@ -73,6 +73,15 @@ export const GameStateDispatch = React.createContext(null);
 export function Game() {
 	const [state, dispatch] = useReducer(gameReducer, initialGameState);
 	
+	//balance restoring
+	useEffect(() => {
+		if (state.balance === 0) {
+			dispatch({
+				type: 'changeBalance',
+				payload: 500,
+			});
+		};
+	}, [state.balance]);
 	return (
 		<View
 			style={{ //style is present solely for start test purposes
