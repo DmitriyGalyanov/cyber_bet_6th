@@ -13,6 +13,7 @@ export const log = logger.createLogger({
 		setters: 6,
 		webViewScreen: 7,
 		component_app_state: 8,
+		component_game_state: 9,
 	},
 	async: false, //true
 	dateFormat: "local",

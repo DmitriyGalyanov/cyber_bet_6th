@@ -5,7 +5,12 @@ const {width: windowWidth, height: windowHeight} = Dimensions.get('window');
 export {windowWidth, windowHeight};
 
 //initial values
-export const initialBalance = 200;
+export const initialBalance = 1000;
+export const initialBet = 100;
+
+export const nextQuestionTimeout = 1200;
+
+//questions
 export const quizQuestions = [
 	{
 		question: 'Что означают буквы «КН» в статистике вратаря?',
@@ -284,9 +289,22 @@ export const quizQuestions = [
 
 //styles
 //colors
-export const mainBGColor = '#D36D76';
+export const mainBGColor = '#8240FF';
 
 export const mainTextColor = '#fff';
+
+export const yellow = '#FF9100';
+export const green = '#00C554';
+
+export const grayedText = '#323232';
+
+//top interface
+export const topInterfaceHeight = 200;
+
+export const heartWrapSide = 60;
+export const heartSide = 44;
+//balance indicator
+export const balanceIndicatorCoinsSide = 40;
 
 
 // not game-logics related
