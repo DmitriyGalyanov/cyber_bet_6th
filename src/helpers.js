@@ -25,3 +25,18 @@ export const animateValue = (animatableValue, toValue, animDuration) => {
 		useNativeDriver: false,
 	}).start();
 };
+
+/**
+ * @returns {number[]} sequence of unique random numbers
+ * @param {number} length amount of numbers in sequence
+ * @param {number} from minimal number
+ * @param {number} to max number
+ */
+export const getRandomSequence = (length, from, to) => {
+	var sequence = [];
+	while(sequence.length < length) {
+		const randomNumber = getRandomIntInclusive(from, to);
+		if(sequence.indexOf(randomNumber) === -1) sequence.push(randomNumber);
+	};
+	return sequence;
+};
