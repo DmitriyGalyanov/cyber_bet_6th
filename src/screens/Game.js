@@ -82,6 +82,37 @@ export function Game() {
 			});
 		};
 	}, [state.balance]);
+	const returnToStartBlock = () => {
+		// additions required?
+		dispatch({
+			type: 'setMode',
+			payload: '',
+		});
+	};
+
+	//back button handling
+	const backHandleFunc = () => {
+		if (!state.mode) return false;
+		if (state.mode === 'quiz') {
+			return true;
+		};
+		if (state.mode === 'betQuestion' && !state.betInfo.isMade) {
+			returnToStartBlock();
+			return true;
+		};
+		if (state.mode === 'betQuestion' && state.betInfo.isMade) {
+			return true;
+		};
+	};
+
+	useEffect(() => {
+		const backHandler = BackHandler.addEventListener(
+			'hardwareBackPress',
+			backHandleFunc,
+		);
+
+		return () => {backHandler.remove()};
+	}, [backHandleFunc]);
 	return (
 		<View
 			style={{ //style is present solely for start test purposes
