@@ -664,6 +664,227 @@ export function Game() {
 			</View>
 		</View>
 	);
+
+	//bet question block
+	const [currentBetQuestionData, setCurrentBetQuestionData] =
+	useState(quizQuestions[getRandomIntInclusive(0, quizQuestions.length - 1)]);
+
+	const [didAnswerBetQuestion, setDidAnswerBetQuestion] = useState({
+		didAnswer: false,
+		isCorrect: false,
+	});
+
+	const handleBetQuestionsAnswer = (isCorrect) => {
+		setDidAnswerBetQuestion({
+			didAnswer: true,
+			isCorrect: isCorrect,
+		});
+		if (isCorrect) {
+			dispatch({
+				type: 'changeBalance',
+				payload: state.betInfo.value * 2,
+			});
+		};
+	};
+
+	const handleBetQuestionRestart = () => {
+		setDidAnswerBetQuestion({
+			didAnswer: false,
+			isCorrect: false,
+		});
+		dispatch({
+			type: 'changeBalance',
+			payload: -state.betInfo.value,
+		});
+		setCurrentBetQuestionData(quizQuestions[getRandomIntInclusive(0, quizQuestions.length - 1)]);
+	};
+
+	const handleReturnFromBetQuestion = () => {
+		setDidAnswerBetQuestion({
+			didAnswer: false,
+			isCorrect: false,
+		});
+		dispatch({
+			type: 'setBetInfo',
+			payload: {value: state.betInfo.value, isMade: false},
+		});
+		setCurrentBetQuestionData(quizQuestions[getRandomIntInclusive(0, quizQuestions.length - 1)]);
+		returnToStartBlock();
+	};
+
+	const renderBetQuestionBlock = () => (
+		<View
+			style={{
+				marginTop: windowHeight * .07,
+			}}
+		>
+			<View
+				style={{
+					minHeight: windowHeight * 0.24,
+					width: windowWidth * 0.85,
+					backgroundColor: mainBGColor,
+					borderRadius: 12,
+					elevation: 4,
+					justifyContent: 'space-between',
+					alignItems: 'center',
+					paddingHorizontal: 12,
+					paddingVertical: 16,
+				}}
+			>
+				{!didAnswerBetQuestion.didAnswer && (
+					<Text
+						style={{
+							textTransform: 'uppercase',
+							fontSize: 21,
+							fontWeight: 'bold',
+							color: mainTextColor,
+							textAlign: 'center',
+						}}
+					>
+						{currentBetQuestionData.question}
+					</Text>
+				)}
+				{didAnswerBetQuestion.didAnswer && (
+					<>
+						<Text
+							style={{
+								color: mainTextColor,
+								fontWeight: 'bold',
+								fontSize: 19,
+							}}
+						>
+							{didAnswerBetQuestion.isCorrect ? 'Вы выиграли!' : 'Вы проиграли'}
+						</Text>
+						<View style={{flexDirection: 'row'}}>
+							<Text
+								style={{
+									color: mainTextColor,
+									fontWeight: 'bold',
+									fontSize: 15,
+									marginRight: 3,
+								}}
+							>
+								Ваш выигрыш:
+							</Text>
+							<Text
+								style={{
+									borderBottomColor: yellow,
+									borderBottomWidth: 1,
+									color: mainTextColor,
+									fontWeight: 'bold',
+									flexGrow: 0.65,
+								}}
+							>
+								{didAnswerBetQuestion.isCorrect ? state.betInfo.value * 2 : 0}
+							</Text>
+						</View>
+						<View>
+							<Text
+								style={{
+									fontSize: 16,
+									color: mainTextColor,
+									fontWeight: 'bold',
+								}}
+							>
+								Хотите повторить?
+							</Text>
+						</View>
+						<View
+							style={{
+								flexDirection: 'row',
+								justifyContent: 'space-around',
+								width: windowWidth * 0.85,
+								
+							}}
+						>
+							<TouchableOpacity onPress={handleBetQuestionRestart} disabled={state.betInfo.value > state.balance}
+								style={{
+									backgroundColor: state.betInfo.value > state.balance ? grayedText : green,
+									paddingVertical: 12,
+									width: windowWidth * 0.45,
+									elevation: 8,
+									alignItems: 'center',
+									borderRadius: 8,
+								}}
+							>
+								<Text
+									style={{
+										color: mainTextColor,
+										fontWeight: 'bold',
+										fontSize: 16,
+									}}
+								>
+									Повторить
+								</Text>
+							</TouchableOpacity>
+							<TouchableOpacity onPress={handleReturnFromBetQuestion}
+								style={{
+									backgroundColor: yellow,
+									paddingVertical: 12,
+									width: windowWidth * 0.2,
+									elevation: 8,
+									alignItems: 'center',
+									borderRadius: 8,
+								}}
+							>
+								<Text
+									style={{
+										color: mainTextColor,
+										fontWeight: 'bold',
+										fontSize: 16,
+									}}
+								>
+									Нет
+								</Text>
+							</TouchableOpacity>
+						</View>
+					</>
+				)}
+			</View>
+			{!didAnswerBetQuestion.didAnswer && (
+				<View
+					style={{
+						flexDirection: 'row',
+						flexWrap: 'wrap',
+						width: windowWidth * 0.85,
+						justifyContent: 'space-between',
+					}}
+				>
+					{currentBetQuestionData.answers.map(question => {
+						const {text, isCorrect} = question;
+						return (
+							<TouchableOpacity key={text} onPress={() => handleBetQuestionsAnswer(isCorrect)}
+								style={{
+									justifyContent: 'center',
+									alignItems: 'center',
+									paddingVertical: 6,
+									paddingHorizontal: 12,
+									width: windowWidth * 0.4,
+									backgroundColor: mainBGColor,
+									marginVertical: 8,
+									borderRadius: 8,
+									elevation: 4,
+								}}
+							>
+								<Text
+									style={{
+										color: mainTextColor,
+										fontWeight: 'bold',
+										textTransform: 'uppercase',
+										textAlign: 'center',
+										fontSize: 12,
+									}}
+								>
+									{text}
+								</Text>
+							</TouchableOpacity>
+						)
+					})}
+				</View>
+			)}
+		</View>
+	);
+
 	return (
 		<View
 			style={{ //style is present solely for start test purposes
