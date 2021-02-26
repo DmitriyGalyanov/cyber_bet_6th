@@ -131,6 +131,70 @@ export function Game() {
 			payload: 'betQuestion',
 		});
 	};
+	//start block
+	const renderStartBlock = () => (
+		<View
+			style={{
+				marginTop: windowHeight * .1,
+			}}
+		>
+			<ActionButton
+				onPress={callQuiz}
+				title='викторина'
+			/>
+			<View
+				style={{
+					marginTop: 40,
+					marginBottom: 6,
+				}}
+			>
+				<ActionButton
+					onPress={callBetQuestion}
+					title='вопрос со ставкой'
+				/>
+			</View>
+			<View
+				style={{
+					justifyContent: 'center',
+					alignItems: 'center',
+					width: windowWidth * 0.7,
+					alignSelf: 'center',
+				}}
+			>
+				<Text
+					style={{
+						color: '#000',
+						fontWeight: 'bold',
+						fontSize: 16,
+					}}
+				>
+					ПОДСКАЗКА:
+				</Text>
+				<Text
+					style={{
+						textAlign: 'center',
+						color: grayedText,
+						fontSize: 13,
+						fontWeight: 'bold',
+						lineHeight: 17,
+					}}
+				>
+					Проверьте свои знания, поставив монеты. Если Вы ответите правильно, ваш выигрыш увеличится вдвое.
+				</Text>
+				<Text
+					style={{
+						textAlign: 'center',
+						color: grayedText,
+						fontSize: 13,
+						fontWeight: 'bold',
+						lineHeight: 17,
+					}}
+				>
+					Подсказки 50/50 не будет!
+				</Text>
+			</View>
+		</View>
+	);
 	return (
 		<View
 			style={{ //style is present solely for start test purposes
