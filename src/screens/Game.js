@@ -70,9 +70,10 @@ function gameReducer(state, action) {
 
 export const GameStateContext = React.createContext(null);
 export const GameStateDispatch = React.createContext(null);
+
 export function Game() {
 	const [state, dispatch] = useReducer(gameReducer, initialGameState);
-	
+
 	//balance restoring
 	useEffect(() => {
 		if (state.balance === 0) {
@@ -82,6 +83,7 @@ export function Game() {
 			});
 		};
 	}, [state.balance]);
+
 	const returnToStartBlock = () => {
 		// additions required?
 		dispatch({
@@ -113,6 +115,7 @@ export function Game() {
 
 		return () => {backHandler.remove()};
 	}, [backHandleFunc]);
+
 	//kinda routing
 	const callQuiz = () => {
 		log.info('quiz called');
@@ -131,6 +134,7 @@ export function Game() {
 			payload: 'betQuestion',
 		});
 	};
+
 	//start block
 	const renderStartBlock = () => (
 		<View
@@ -885,22 +889,23 @@ export function Game() {
 		</View>
 	);
 
-	return (
-		<View
-			style={{ //style is present solely for start test purposes
-				flex: 1,
-				justifyContent: 'center',
-				alignItems: 'center',
-			}}
-		>
-			<Text>
-				Game Screen
-			</Text>
-		</View>
 	//render block
 	return (
 		<GameStateContext.Provider value={state}>
 			<GameStateDispatch.Provider value={dispatch}>
+				<ImageBackground
+					source={background}
+					style={{
+						flex: 1,
+						alignItems: 'center',
+					}}
+				>
+					<TopInterface />
+					{!state.mode && renderStartBlock()}
+					{(state.mode === 'quiz') && renderQuizBlock()}
+					{(state.mode === 'betQuestion' && !state.betInfo.isMade) && renderMakeBetBlock()}
+					{(state.mode === 'betQuestion' && state.betInfo.isMade) && renderBetQuestionBlock()}
+				</ImageBackground>
 			</GameStateDispatch.Provider>
 		</GameStateContext.Provider>
 	)
