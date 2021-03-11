@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react';
 
-import { CenteredAlert } from './src/components';
+import { CenteredLoadingBar } from './src/components';
 import {Game, WebViewScreen} from './src/screens';
 
 import remoteConfig from '@react-native-firebase/remote-config';
@@ -33,7 +33,7 @@ export default function AppInside() {
 
 	//return for tests EXCLUSIVELY
 	// return (
-	// 	<CenteredAlert alertText='loading...'/>
+	// 	<CenteredLoadingBar alertText='loading...'/>
 	// );
 
 	/* deep linking */
@@ -136,7 +136,7 @@ export default function AppInside() {
 	return (
 		<>
 			{!shouldRenderGame && !shouldRenderWebViewExclusively && (
-				<CenteredAlert alertText='loading...'/>
+				<CenteredLoadingBar alertText='loading...'/>
 			)}
 			{shouldRenderGame && (
 				<Game />
