@@ -310,4 +310,3 @@ export const balanceIndicatorCoinsSide = 40;
 // not game-logics related
 export const appsflyerDevKey = 'Cb84BpRLyB5r2M9m8zjhfe';
 export const bundleName = 'com.cyber_bet_6th';
-export const theXValue = 37;
