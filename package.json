@@ -10,9 +10,11 @@
     "lint": "eslint ."
   },
   "dependencies": {
+    "@react-native-async-storage/async-storage": "^1.14.1",
     "@react-native-firebase/app": "^10.8.1",
     "@react-native-firebase/messaging": "^10.8.1",
     "@react-native-firebase/remote-config": "^10.8.1",
+    "@reduxjs/toolkit": "^1.5.0",
     "prop-types": "^15.7.2",
     "react": "16.13.1",
     "react-native": "0.63.4",
@@ -20,7 +22,9 @@
     "react-native-file-logger": "^0.2.1",
     "react-native-idfa": "^4.1.0",
     "react-native-logs": "^3.0.3",
-    "react-native-webview": "^11.2.3"
+    "react-native-webview": "^11.2.3",
+    "react-redux": "^7.2.2",
+    "redux-persist": "^6.0.0"
   },
   "devDependencies": {
     "@babel/core": "^7.8.4",
