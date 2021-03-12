@@ -7,27 +7,27 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:345604862026:android:492f366fe4e213496b36b3",
+        "mobilesdk_app_id": "1:18760615554:android:362a0a2cc437196e49969b",
         "android_client_info": {
-          "package_name": "com.cyber_bet_6th"
+          "package_name": "com.bester.lckbng.app"
         }
       },
       "oauth_client": [
         {
-          "client_id": "345604862026-mgappatb9lbkutdpb6t0jckubv3rbc43.apps.googleusercontent.com",
+          "client_id": "18760615554-rvvqo02r8g6j4obnaju9pvd7hhsih8vf.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyBg6w5_jO1Z7pQ0BWlf0OhEEWbpwLR0AMs"
+          "current_key": "AIzaSyCVYWdHMtWAv-321CtA0wKy2ywySDqLEZ0"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "345604862026-mgappatb9lbkutdpb6t0jckubv3rbc43.apps.googleusercontent.com",
+              "client_id": "18760615554-rvvqo02r8g6j4obnaju9pvd7hhsih8vf.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

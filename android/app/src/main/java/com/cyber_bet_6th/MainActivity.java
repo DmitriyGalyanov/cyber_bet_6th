@@ -1,4 +1,4 @@
-package com.cyber_bet_6th;
+package com.bester.lckbng.app;
 
 import com.facebook.react.ReactActivity;
 
@@ -10,6 +10,6 @@ public class MainActivity extends ReactActivity {
    */
   @Override
   protected String getMainComponentName() {
-    return "cyber_bet_6th";
+    return "bester.lckbng.app";
   }
 }

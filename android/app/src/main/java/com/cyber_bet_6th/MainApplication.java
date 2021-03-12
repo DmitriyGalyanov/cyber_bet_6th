@@ -1,4 +1,4 @@
-package com.cyber_bet_6th;
+package com.bester.lckbng.app;
 
 import android.app.Application;
 import android.content.Context;
@@ -63,7 +63,7 @@ public class MainApplication extends MultiDexApplication implements ReactApplica
          We use reflection here to pick up the class that initializes Flipper,
         since Flipper library is not available in release mode
         */
-        Class<?> aClass = Class.forName("com.cyber_bet_6th.ReactNativeFlipper");
+        Class<?> aClass = Class.forName("com.bester.lckbng.app.ReactNativeFlipper");
         aClass
             .getMethod("initializeFlipper", Context.class, ReactInstanceManager.class)
             .invoke(null, context, reactInstanceManager);
